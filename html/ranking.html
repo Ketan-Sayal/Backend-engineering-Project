@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+        .main-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            background-color: #111;
+            color: #fff;
+        }
+
+        .nav-brand {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .nav-logo {
+            height: 30px;
+        }
+
+        .brand-text {
+            font-size: 18px;
+            font-weight: bold;
+            color: #f4a100;
+        }
+
+        .nav-menu {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: #fff;
+            font-size: 16px;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-menu a:hover {
+            color: #f4a100;
+        }
+
+        .nav-buttons {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .btn-fee {
+            text-decoration: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            font-size: 14px;
+            font-weight: bold;
+            text-align: center;
+            background-color: #fff;
+            color: #111;
+            border: 1px solid #fff;
+            transition: all 0.3s;
+        }
+
+        .btn-fee:hover {
+            background-color: #f4a100;
+            color: #fff;
+            border-color: #f4a100;
+        }
+
+        .btn-login {
+            text-decoration: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            font-size: 14px;
+            font-weight: bold;
+            text-align: center;
+            color: #fff;
+            background: none;
+            transition: color 0.3s;
+        }
+
+        .btn-login:hover {
+            color: #f4a100;
+        }
+
+        .btn-signup {
+            text-decoration: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            font-size: 14px;
+            font-weight: bold;
+            text-align: center;
+            background-color: #28a745;
+            color: #fff;
+            transition: background-color 0.3s;
+        }
+
+        .btn-signup:hover {
+            background-color: #218838;
+        }
+
+        .auth-buttons {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .login-btn {
+            padding: 0.5rem 1rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            background: transparent;
+            color: #666;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .signup-btn {
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 4px;
+            background: #ff9933;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .login-btn:hover {
+            background: #f5f5f5;
+        }
+
+        .signup-btn:hover {
+            background: #ff8819;
+        }
+
+        .header {
+            background: #f8f9fa;
+            padding: 20px;
+            text-align: center;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .search-section {
+            background: #fff;
+            padding: 30px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .search-box {
+            padding: 10px;
+            width: 300px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            margin-right: 10px;
+        }
+
+        .search-button {
+            padding: 10px 20px;
+            background: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .grid-item {
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 20px;
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .grid-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .icon {
+            width: 60px;
+            height: 60px;
+            background: #ffd700;
+            border-radius: 50%;
+            margin: 0 auto 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .title {
+            font-size: 16px;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .description {
+            font-size: 14px;
+            color: #666;
+            line-height: 1.4;
+        }
+
+        .cta-section {
+            background: #ffa500;
+            padding: 30px;
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        .cta-button {
+            padding: 12px 24px;
+            background: white;
+            color: #333;
+            border: none;
+            border-radius: 4px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 15px;
+        }
+
+        .footer {
+            background: #1a1a1a;
+            color: white;
+            padding: 40px 20px;
+            font-family: Arial, sans-serif;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+        }
+
+        .footer .logo {
+            height: 40px;
+            margin-bottom: 20px;
+        }
+
+        .nav-group h3 {
+            color: white;
+            margin-bottom: 15px;
+            font-size: 16px;
+        }
+
+        .nav-group ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .nav-group li {
+            margin-bottom: 10px;
+        }
+
+        .nav-group a {
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .nav-group a:hover {
+            color: #ffc107;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-icon {
+            background: #ffc107;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: black;
+            text-decoration: none;
+        }
+
+        .newsletter {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .newsletter input {
+            padding: 10px;
+            border: none;
+            flex-grow: 1;
+        }
+
+        .newsletter button {
+            background: #ffc107;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+
+        .copyright {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #333;
+            font-size: 12px;
+            color: #888;
+        }
+        :root {
+    --primary: #FF9F43;
+    --primary-hover: #FF8A25;
+    --dark: #2D3436;
+}
+
+nav {
+    background: white;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 100;
+}
+
+.nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+}
+
+.nav-links {
+    display: flex;
+    gap: 2rem;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: var(--dark);
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+    color: var(--primary);
+}
+
+.auth-buttons {
+    display: flex;
+    gap: 1rem;
+}
+
+.btn {
+    padding: 0.5rem 1.5rem;
+    border-radius: 4px;
+    cursor: pointer;
+    border: none;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.btn-primary {
+    background: var(--primary);
+    color: white;
+}
+
+.btn-primary:hover {
+    background: var(--primary-hover);
+}
+
+    </style>
+</head>
+<body>
+    <nav class="main-nav">
+        <div class="nav-brand">
+            <span 
+                class="brand-text" 
+                onclick="navigateTo('http://localhost:80/home')" 
+                style="text-decoration: none; cursor: pointer;"
+            >
+                TOPUNIVERSITIES
+            </span>
+        </div>
+        
+        <ul class="nav-menu">
+            <li style="cursor: pointer;" onclick="navigateTo('http://localhost:80/rankings')">RANKINGS</li>
+            <li style="cursor: pointer;" onclick="navigateTo('http://localhost:80/discover')">DISCOVER</li>
+            <li style="cursor: pointer;" onclick="navigateTo('http://localhost:80/events')">EVENTS</li>
+            <li style="cursor: pointer;" onclick="navigateTo('http://localhost:80/prepare')">PREPARE</li>
+            <li style="cursor: pointer;" onclick="navigateTo('http://localhost:80/careers')">CAREERS</li>
+            <li style="cursor: pointer;" onclick="navigateTo('http://localhost:80/community')">COMMUNITY</li>
+            <li style="cursor: pointer;" onclick="navigateTo('http://localhost:80/courses')">COURSES</li>
+            <li style="cursor: pointer;" onclick="navigateTo('http://localhost:80/Resources')">RESOURCES</li>
+        </ul>
+        
+        <div class="nav-buttons">
+            <button onclick="navigateTo('http://localhost:80/feestructure')" class="btn-fee" style="cursor: pointer;">Fee Structure</button>
+        </div>
+    </nav>
+    
+
+    <div class="header">
+        <h1>World University Rankings 2025</h1>
+    </div>
+
+    <div class="search-section">
+        <input type="text" class="search-box" placeholder="Search universities...">
+        <button class="search-button">Search</button>
+    </div>
+
+    <div class="grid-container">
+        <div class="grid-item">
+            <div class="icon">🏛️</div>
+            <h3 class="title">Academic Excellence</h3>
+            <p class="description">Leading institutions ranked by academic performance and research impact</p>
+        </div>
+        <div class="grid-item">
+            <div class="icon">🎓</div>
+            <h3 class="title">Student Success</h3>
+            <p class="description">Rankings based on graduate outcomes and student satisfaction</p>
+        </div>
+        <div class="grid-item">
+            <div class="icon">🌍</div>
+            <h3 class="title">Global Impact</h3>
+            <p class="description">Universities making significant contributions to global research and innovation</p>
+        </div>
+        <div class="grid-item">
+            <div class="icon">💼</div>
+            <h3 class="title">Employment Rate</h3>
+            <p class="description">Institutions ranked by graduate employability and career outcomes</p>
+        </div>
+        <div class="grid-item">
+            <div class="icon">🔬</div>
+            <h3 class="title">Research Output</h3>
+            <p class="description">Rankings based on research quality and scholarly publications</p>
+        </div>
+        <div class="grid-item">
+            <div class="icon">🤝</div>
+            <h3 class="title">Industry Connection</h3>
+            <p class="description">Universities with strong industry partnerships and collaboration</p>
+        </div>
+    </div>
+
+    <div class="cta-section">
+        <h2>Speak to higher education experts</h2>
+        <p>Get expert guidance on university rankings and admissions</p>
+        <button class="cta-button">Find out more</button>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="nav-group">
+                <span class="brand-text">TOPUNIVERSITIES</span>
+                <div class="social-icons">
+                    <a href="#" class="social-icon">f</a>
+                    <a href="#" class="social-icon">𝕏</a>
+                    <a href="#" class="social-icon">in</a>
+                    <a href="#" class="social-icon">▶</a>
+                    <a href="#" class="social-icon">📷</a>
+                </div>
+            </div>
+
+            <div class="nav-group">
+                <h3>For Students</h3>
+                <ul>
+                    <li><a href="#">Rankings</a></li>
+                    <li><a href="#">Find a Course</a></li>
+                    <li><a href="#">Student Guide</a></li>
+                </ul>
+            </div>
+
+            <div class="nav-group">
+                <h3>For Institution</h3>
+                <ul>
+                    <li><a href="#">Partner with Us</a></li>
+                    <li><a href="#">Analytics</a></li>
+                    <li><a href="#">Resources</a></li>
+                </ul>
+            </div>
+
+            <div class="nav-group">
+                <h3>Legal</h3>
+                <ul>
+                    <li><a href="#">Privacy</a></li>
+                    <li><a href="#">Terms & Conditions</a></li>
+                    <li><a href="#">Data Copyright</a></li>
+                    <li><a href="#">Cookies</a></li>
+                </ul>
+            </div>
+
+            <div class="nav-group">
+                <h3>Subscribe to Our Newsletter</h3>
+                <div class="newsletter">
+                    <input type="email" placeholder="Please enter your email">
+                    <button>→</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="copyright">
+            © QS Quacquarelli Symonds Limited 1994 - 2024. All rights reserved.
+        </div>
+    </footer>
+
+    <script>
+        document.querySelectorAll('.grid-item').forEach(item => {
+            item.addEventListener('click', () => {
+                item.style.transform = 'scale(1.05)';
+                setTimeout(() => {
+                    item.style.transform = 'translateY(-5px)';
+                }, 200);
+            });
+        });
+
+        document.querySelector('.search-button').addEventListener('click', () => {
+            const searchValue = document.querySelector('.search-box').value;
+            if (searchValue) {
+                alert('Searching for: ' + searchValue);
+            }
+        });
+       
+        function navigateTo(url) {
+            window.location.href = url;
+        }
+
+    </script>
+</body>
+</html>

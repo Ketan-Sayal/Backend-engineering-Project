@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DevNexus Login</title>
+    <link rel="stylesheet" href="login.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <style>
+      * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+.left {
+    font-family: Arial, sans-serif;
+    background-color:#111;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+.left .container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+.left .card {
+    width: 380px;
+    height: 420px;
+    max-width: 400px;
+    border-radius: 15px;
+    overflow: hidden;
+    position: relative;
+    margin-bottom: 20px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease; 
+}
+.left .card:hover {
+    transform: skew(-5deg);
+    box-shadow: 0 15px 30px rgba(33, 150, 243, 0.4);
+}
+.left .date:hover , h2:hover , p:hover {
+    transform: translate(10px, -10px); 
+}
+.left .card-header {
+    height: 150px;
+    position: relative;
+    overflow: hidden;
+}
+.left .blue-card {
+    box-shadow: 
+        0 0 10px rgba(33, 150, 243, 0.4),  
+        0 0 20px rgba(33, 150, 243, 0.3),  
+        0 0 30px rgba(33, 150, 243, 0.2), 
+        0 4px 15px rgba(0, 0, 0, 0.2);     
+    }
+.left .blue-card .card-header {
+    background: linear-gradient(135deg, #0d0d47 0%, blue 40%, #3c3b6e 80%, #1b1b2f 100%);
+    position: relative;
+}
+.left .blue-card .card-header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image:
+        radial-gradient(white, rgba(255,255,255,.6) 2px, transparent 2px),
+        radial-gradient(white, rgba(255,255,255,.5) 1px, transparent 1px),
+        radial-gradient(white, rgba(255,255,255,.4) 1px, transparent 1px),
+        radial-gradient(white, rgba(255,255,255,.3) 1px, transparent 1px);
+    background-size: 50px 50px, 30px 30px, 15px 15px, 8px 8px;
+    background-position: 0 0, 25px 25px, 10px 10px, 15px 15px;
+    animation: blink-stars 3s infinite ease-in-out;
+}
+.left .date {
+    background-color: rgba(0, 0, 0, 0.8);
+    color: #fff;
+    padding: 8px 12px;
+    border-radius: 10px;
+    font-size: 24px;
+    position: absolute;
+    top: 55px;
+    left: 25px; 
+    text-align: center;
+    line-height: 1.2;
+    font-weight: bold;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.7);
+    z-index: 10;
+}
+.left .date span {
+    font-size: 20px;
+    display: block;
+}
+.left .blue-card .date span {
+    color: #2196F3;
+}
+.left .card-content {
+    padding: 20px;
+    background-color: rgba(0,0,0,0.5);
+    color: #fff;
+    z-index: -1;
+    overflow: hidden;
+}
+.left h2 {
+    margin-top: 0;
+    font-size: 34px;
+    margin-bottom: 10px;
+}
+.left p {
+    font-size: 14px;
+    line-height: 1.5;
+    margin-bottom: 20px;
+}
+.left .see-more {
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 18px;
+    text-transform: uppercase;
+}
+.left .blue-card .see-more {
+    color: #2196F3;
+}
+@media (max-width: 600px) {
+    .left .date {font-size: 12px;}
+    .left h2 {font-size: 20px;}
+    .left p {font-size: 12px;}
+}
+
+@keyframes blink-stars {
+    0% {
+        opacity: 1;
+        filter: brightness(1.5);
+    }
+    50% {
+        opacity: 0.3;
+        filter: brightness(1.8);
+    }
+    100% {
+        opacity: 1;
+        filter: brightness(1.5);
+    }
+}
+
+.right {
+    font-family: 'Montserrat', sans-serif;
+    /* background: conic-gradient(from 0deg, #ff0080,#ff8c00,#ffd700,#00ff00,#00ffff,#0000ff,#800080,#ff0080); */
+    background-color:#111;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    color: rgb(0, 255, 0);
+    overflow: hidden; 
+}
+
+.box {
+    position: relative;
+    width: 380px;
+    height: 400px;
+    max-width: 400px;
+    overflow: hidden;
+    background: rgba(0, 0, 0, 0.8); 
+    box-shadow: 
+        0 0 10px rgba(33, 150, 243, 0.4),  
+        0 0 20px rgba(33, 150, 243, 0.3),  
+        0 0 30px rgba(33, 150, 243, 0.2), 
+        0 4px 15px rgba(0, 0, 0, 0.2);     
+    animation: fadeIn 0.5s ease-in-out; 
+    isolation: isolate; 
+}
+.box::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 380px;
+    height: 420px;
+    background: linear-gradient(0deg,transparent,
+    transparent,#45f3ff,#45f3ff,#45f3ff);
+    z-index:1;
+    transform-origin:bottom right;
+    animation: animate 6s linear infinite ;
+}
+.box::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 380px;
+    height: 420px;
+    background: linear-gradient(0deg,transparent,
+    transparent,#45f3ff,#45f3ff,#45f3ff);
+    z-index:1;
+    transform-origin:bottom right;
+    animation: animate 6s linear infinite ;
+    animation-delay: -3s;
+}
+.borderLine {
+    position: absolute;
+    top: 0 ;
+    inset: 0;
+}
+.borderLine::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 380px;
+    height: 420px;
+    background: linear-gradient(0deg,transparent,
+    transparent,#ff2770,#ff2770,#ff2770);
+    z-index:1;
+    transform-origin:bottom right;
+    animation: animate 6s linear infinite ;
+    animation-delay: -1.5s;
+}
+.borderLine::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 380px;
+    height: 420px;
+    background: linear-gradient(0deg,transparent,
+    transparent,#ff2770,#ff2770,#ff2770);
+    z-index:1;
+    transform-origin:bottom right;
+    animation: animate 6s linear infinite ;
+    animation-delay: -4.5s;
+}
+@keyframes animate  
+{
+    0% 
+    {
+        transform: rotate(0deg);
+    }
+    100%
+    {
+        transform: rotate(360deg);
+    }
+}
+.box form {
+    position: absolute;
+    inset: 4px;
+    background: rgba(0, 0, 0, 1); 
+    padding: 30px 20px; /* Reduced padding */
+    border-radius: 8px;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+}
+
+.box form h1 {
+    text-align: center;
+    letter-spacing: 0.1rem;
+    margin-bottom: 10px; 
+    font-weight: 700;
+    font-size: 1.8em; /* Increased font size for better visibility */
+    line-height: 1.2; /* Adjust line height */
+    color: transparent; /* Ensure the text is transparent */
+    background: linear-gradient(270deg, #ff0080, #ff8c00, #ffd700, #00ff00, #00ffff, #0000ff, #800080);
+    background-size: 400% 400%; /* Adjust background size for the gradient */
+    -webkit-background-clip: text; /* Clip the background to the text */
+    -webkit-text-fill-color: transparent; /* Fill the text with the gradient */
+    background-clip: text;
+    animation: gradient-animation 8s ease infinite; /* Ensure the animation is applied */
+}
+
+@keyframes gradient-animation {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+.box form .inputBox {
+    position: relative;
+    width: 300px;
+    margin-top: 35px;
+}
+.box form .inputBox input {
+    position: relative;
+    width: 100%;
+    padding: 20px 10px 10px;
+    background: transparent;
+    box-shadow: none;
+    color:rgba(255,0,255);
+    font-size: 1em;
+    outline: none;
+    border:none ;
+    letter-spacing: 0.05em;
+    transition: 0.5s;
+    z-index: 10;
+}
+.box form .inputBox span {
+    position: absolute;
+    left: 0;
+    padding: 20px 10px 10px;
+    pointer-events: none;
+    color:rgba(0,255,0) ;
+    font-size: 1em;
+    letter-spacing: 0.05em;
+    transition: 0.5s;
+}
+.box form .inputBox input:valid ~ span,
+.box form .inputBox input:focus ~ span {
+    color:rgba(0,255,0) ;
+    font-size: 0.75em ;
+    transform: translateY(-35px);
+} 
+.box form .inputBox i {
+    position:absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 2px;
+    background: #fff;
+    border-radius: 4px;
+    transition: 0.5s;
+    overflow: hidden;
+    pointer-events: none;
+
+}
+.box form .inputBox input:valid ~ i,
+.box form .inputBox input:focus ~ i {
+    height: 44px; 
+}
+.box form .links {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 15px;
+    font-size: 0.9rem;
+}
+.box form .links a {
+    color: #fff;
+    text-decoration: none;
+    margin: 0 10px;
+    transition: color 0.3s ease;
+}
+.box form .links a:hover
+{
+    color: rgb(255, 0, 255);
+    text-decoration: underline;
+}
+.box form input[type="submit"] {
+    border: none;
+    outline: none;
+    padding: 9px 25px;
+    cursor: pointer;
+    font-size: 0.9em;
+    border-radius: 10px;
+    font-weight: 600;
+    width: 280px;
+    background-color: rgb(0, 255, 0);
+    color: black;
+    margin: 10px auto; 
+    display: block; 
+}
+
+.box form input[type="submit"]:active {
+    opacity: 0.8;
+}
+
+.box form input[type="submit"]:hover {
+    background-color: rgb(255, 0, 255);
+    color: white;
+    text-decoration: underline ;
+    transform: scale(1.1);
+}
+
+.rememberMe {
+    display: flex;
+    align-items: center;
+    margin: 10px 0;
+}
+
+.rememberMe input[type="checkbox"] {
+    margin-right: 10px;
+    accent-color: #fff; 
+}
+
+.rememberMe label {
+    color: rgb(0,255,0);
+    font-size: 0.9em;
+    cursor: pointer;
+    transition: color 0.3s;
+    margin-left: 5px;
+    margin-right: 10px;
+}
+
+@media screen and (max-width: 1024px) {
+    body > div {
+        flex-direction: column;
+    }
+
+    .left, .right {
+        width: 100% !important;
+    }
+
+    .left {
+        height: 100% ;
+    }
+
+    .right {
+        padding:10% ;
+        height:100% ;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .box {
+        width: 90%;
+        max-width: 380px;
+        height: auto;
+        min-height: 420px;
+    }
+
+    .box form {
+        padding: 30px 20px;
+    }
+
+    .box form .inputBox {
+        width: 100%;
+    }
+
+    .box form h1 {
+        font-size: 1.5em;
+    }
+
+    .box form .links a {
+        margin: 5px 0;
+    }
+
+    .box form input[type="submit"] {
+        width: 100%;
+    }
+}
+    </style>
+</head>
+<body>
+    <div style="display: flex;">
+        <div class="left" style="width: 50%;">
+            <div class="container">
+                <div class="card blue-card">
+                  <div class="card-header">
+                      <div class="date" id="current-date">JUNE<span>29</span></div>
+                  </div>
+                  <div class="card-content">
+                      <h2>TOP UNIVERSITIES</h2>
+                      <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptas cumque quae eius cupiditate? Expedita, vitae quas dolor nam nulla iure rem, corporis earum ipsum fuga delectus ea velit similique hic. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis aperiam quisquam perspiciatis officia amet </p>
+                      <span class ="see-more" style="cursor: pointer;" onclick="navigateTo('http://localhost:80')">SEE MORE</span>
+                  </div>
+              </div>
+            </div>
+        </div>      
+        <div class="right" style="width: 50%;">
+            <!-- Login Form -->
+            <div class="box" id="login-box">
+                <span class="borderLine"></span>
+                <form autocomplete='off' action="http://localhost:80/login" method="POST" class="form">
+                    <h1 class="gradient-text">TOP UNIVERSITIES</h1>
+                    <div class="inputBox">                                                    
+                        <input type="text" name="username" required="required">
+                        <span>Username/Email</span>
+                        <i></i>
+                    </div>
+                    <div class="inputBox">
+                        <input type="password" name="password" required="required">
+                        <span>Password</span>
+                        <i></i>
+                    </div>
+                    <br>
+                    <div class="rememberMe">
+                        <label>Remember Me</label>
+                        <input type="checkbox" required>
+                    </div>
+                    <div class="submit">
+                        <input type="submit" value="Login">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        var tl1 = gsap.timeline() ;
+        var tl2 = gsap.timeline() ;
+        tl1.from(".left .container",{
+            duration:1 ,
+            y:-800 ,
+            ease:"expo.out" ,
+            opacity:0 
+        });
+        tl1.from(".left .container .card .card-header",{
+            duration:0.5 ,
+            scale:0 ,
+            ease:"expo.out" 
+        });
+        tl1.from(".left .container .card .card-header .date",{
+            duration:0.5 ,
+            scale:0 ,
+            ease:"expo.out" 
+        });
+        tl1.from([".left .container .card .card-content h2",".left .container .card .card-content p",".left .container .card .card-content .see-more"],{
+            duration:0.5 ,
+            y:-400 ,
+            ease:"expo.out" ,
+            opacity:0 ,
+            stagger:0.5
+        });
+        tl2.from(".right #login-box",{
+            duration:1 ,
+            y:-800 ,
+            ease:"expo.out" ,
+            opacity:0 
+        });
+        tl2.from(".right #login-box form .gradient-text",{
+            duration:0.5 ,
+            y:-400 ,
+            ease:"expo.out" ,
+            opacity:0 
+        });
+        tl2.from([".right #login-box form .inputBox",".right #login-box form .rememberMe"],{
+            duration:0.5 ,
+            x:400 ,
+            ease:"expo.out" ,
+            opacity:0 ,
+            stagger:0.15 ,
+        });
+        tl2.from(".right #login-box form .submit",{
+            duration:0.5 ,
+            scale:0 ,
+            ease:"expo.out" 
+        });
+        tl2.from(".right #login-box form .links #forgot-password",{
+            duration:0.5 ,
+            x:-400 ,
+            opacity:0 ,
+            ease:"expo.out" 
+        },"anim1");
+        tl2.from(".right #login-box form .links #create-account",{
+            duration:0.5 ,
+            x:400 ,
+            opacity:0 ,
+            ease:"expo.out" 
+        },"anim1");
+    </script>
+    <script>
+        function navigateTo(url) {
+            window.location.href = url;
+        }
+
+    </script>
+</body>
+</html>

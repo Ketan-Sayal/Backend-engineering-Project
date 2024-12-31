@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fee Structure</title>
+    <style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f9f9f9;
+    color: #333;
+    line-height: 1.6;
+}
+
+header {
+    background-color: #004080;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+}
+
+header h1 {
+    font-size: 36px;
+}
+
+.container {
+    flex: 1;
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 20px;
+}
+
+.intro {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.intro h2 {
+    font-size: 28px;
+    margin-bottom: 10px;
+}
+
+.intro p {
+    font-size: 16px;
+    color: gray;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    background-color: #fff;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+table th, table td {
+    border: 1px solid #ddd;
+    padding: 15px;
+    text-align: left;
+}
+
+table th {
+    background-color: #004080;
+    color: #fff;
+    text-transform: uppercase;
+}
+
+table tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+.note {
+    font-size: 14px;
+    color: #666;
+    margin-top: 10px;
+}
+
+.custom-footer {
+        background: #1a1a1a;
+        color: white;
+        padding: 40px 20px;
+        font-family: Arial, sans-serif;
+    }
+
+    .custom-footer-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 30px;
+    }
+
+    .custom-footer .logo {
+        height: 40px;
+        margin-bottom: 20px;
+    }
+
+    .custom-nav-group h3 {
+        color: white;
+        margin-bottom: 15px;
+        font-size: 16px;
+    }
+
+    .custom-nav-group ul {
+        list-style: none;
+        padding: 0;
+    }
+
+    .custom-nav-group li {
+        margin-bottom: 10px;
+    }
+
+    .custom-nav-group a {
+        color: #ffffff;
+        text-decoration: none;
+        font-size: 14px;
+    }
+
+    .custom-nav-group a:hover {
+        color: #ffc107;
+    }
+
+    .custom-social-icons {
+        display: flex;
+        gap: 15px;
+        margin-top: 20px;
+    }
+
+    .custom-social-icon {
+        background: #ffc107;
+        width: 35px;
+        height: 35px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: black;
+        text-decoration: none;
+    }
+
+    .custom-newsletter {
+        display: flex;
+        gap: 10px;
+        margin-top: 15px;
+    }
+
+    .custom-newsletter input {
+        padding: 10px;
+        border: none;
+        flex-grow: 1;
+        border-radius: 4px;
+    }
+
+    .custom-newsletter button {
+        background: #ffc107;
+        border: none;
+        padding: 10px 20px;
+        cursor: pointer;
+        border-radius: 4px;
+    }
+
+    .custom-copyright {
+        text-align: center;
+        margin-top: 40px;
+        padding-top: 20px;
+        border-top: 1px solid #333;
+        font-size: 12px;
+        color: #888
+    }
+    .main-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #111;
+    color: #fff;
+}
+
+.nav-brand {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.nav-logo {
+    height: 30px;
+}
+
+.brand-text {
+    font-size: 18px;
+    font-weight: bold;
+    color: #f4a100;
+}
+
+.nav-menu {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-menu a {
+    text-decoration: none;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 500;
+    transition: color 0.3s;
+}
+
+.nav-menu a:hover {
+    color: #f4a100;
+}
+
+.nav-buttons {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.btn-fee {
+    text-decoration: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    font-size: 14px;
+    font-weight: bold;
+    text-align: center;
+    background-color: #fff;
+    color: #111;
+    border: 1px solid #fff;
+    transition: all 0.3s;
+}
+
+.btn-fee:hover {
+    background-color: #f4a100;
+    color: #fff;
+    border-color: #f4a100;
+}
+
+.btn-login {
+    text-decoration: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    font-size: 14px;
+    font-weight: bold;
+    text-align: center;
+    color: #fff;
+    background: none;
+    transition: color 0.3s;
+}
+
+.btn-login:hover {
+    color: #f4a100;
+}
+
+.btn-signup {
+    text-decoration: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    font-size: 14px;
+    font-weight: bold;
+    text-align: center;
+    background-color: #28a745;
+    color: #fff;
+    transition: background-color 0.3s;
+}
+
+.btn-signup:hover {
+    background-color: #218838;
+}
+
+    </style>
+</head>
+<body>
+    <navbar>
+        <!-- Replace this nav section -->
+        <nav class="main-nav">
+            <div class="nav-brand">
+                <span 
+                    class="brand-text" 
+                    onclick="navigateTo('http://localhost:80/home')" 
+                    style="text-decoration: none; cursor: pointer;"
+                >
+                    TOPUNIVERSITIES
+                </span>
+            </div>
+            
+            <ul class="nav-menu">
+                <li style="cursor: pointer;" onclick="navigateTo('http://localhost:80/rankings')">RANKINGS</li>
+                <li style="cursor: pointer;" onclick="navigateTo('http://localhost:80/discover')">DISCOVER</li>
+                <li style="cursor: pointer;" onclick="navigateTo('http://localhost:80/events')">EVENTS</li>
+                <li style="cursor: pointer;" onclick="navigateTo('http://localhost:80/prepare')">PREPARE</li>
+                <li style="cursor: pointer;" onclick="navigateTo('http://localhost:80/careers')">CAREERS</li>
+                <li style="cursor: pointer;" onclick="navigateTo('http://localhost:80/community')">COMMUNITY</li>
+                <li style="cursor: pointer;" onclick="navigateTo('http://localhost:80/courses')">COURSES</li>
+                <li style="cursor: pointer;" onclick="navigateTo('http://localhost:80/Resources')">RESOURCES</li>
+            </ul>
+            
+            <div class="nav-buttons">
+                <button onclick="navigateTo('http://localhost:80/feestructure')" class="btn-fee" style="cursor: pointer;">Fee Structure</button>
+            </div>
+        </nav>
+        
+    </navbar>
+    <header>
+        <h1>Fee Structure</h1>
+        <p>Transparent details of fees and expenses for all programs.</p>
+    </header>
+
+    <div class="container">
+        <section class="intro">
+            <h2>Comprehensive Fee Details</h2>
+            <p>Explore tuition fees, accommodation costs, and additional charges for various programs.</p>
+        </section>
+
+        <section>
+            <h3>Undergraduate Programs</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Program</th>
+                        <th>Tuition Fees (Per Semester)</th>
+                        <th>Accommodation Fees</th>
+                        <th>Miscellaneous Fees</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Bachelor of Science</td>
+                        <td>$5,000</td>
+                        <td>$2,500</td>
+                        <td>$300</td>
+                    </tr>
+                    <tr>
+                        <td>Bachelor of Arts</td>
+                        <td>$4,800</td>
+                        <td>$2,500</td>
+                        <td>$300</td>
+                    </tr>
+                    <tr>
+                        <td>Bachelor of Engineering</td>
+                        <td>$6,000</td>
+                        <td>$2,700</td>
+                        <td>$400</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section>
+            <h3>Postgraduate Programs</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Program</th>
+                        <th>Tuition Fees (Per Semester)</th>
+                        <th>Accommodation Fees</th>
+                        <th>Miscellaneous Fees</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Master of Science</td>
+                        <td>$6,500</td>
+                        <td>$2,800</td>
+                        <td>$400</td>
+                    </tr>
+                    <tr>
+                        <td>Master of Arts</td>
+                        <td>$6,200</td>
+                        <td>$2,800</td>
+                        <td>$400</td>
+                    </tr>
+                    <tr>
+                        <td>Master of Business Administration</td>
+                        <td>$8,000</td>
+                        <td>$3,000</td>
+                        <td>$500</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section>
+            <h3>Additional Information</h3>
+            <p class="note">Note: Miscellaneous fees include library charges, exam fees, and lab maintenance charges. All fees are subject to revision by the university.</p>
+        </section>
+    </div>
+
+    <footer class="custom-footer">
+        <div class="custom-footer-container">
+            <div class="custom-nav-group">
+                <img src="/api/placeholder/150/40" alt="QS Top Universities" class="logo">
+                <div class="custom-social-icons">
+                    <a href="#" class="custom-social-icon">f</a>
+                    <a href="#" class="custom-social-icon">𝕏</a>
+                    <a href="#" class="custom-social-icon">in</a>
+                    <a href="#" class="custom-social-icon">▶</a>
+                    <a href="#" class="custom-social-icon">📷</a>
+                </div>
+            </div>
+
+            <div class="custom-nav-group">
+                <h3>For Students</h3>
+                <ul>
+                    <li><a href="#">Rankings</a></li>
+                    <li><a href="#">Find a Course</a></li>
+                    <li><a href="#">Student Guide</a></li>
+                </ul>
+            </div>
+
+            <div class="custom-nav-group">
+                <h3>For Institution</h3>
+                <ul>
+                    <li><a href="#">Partner with Us</a></li>
+                    <li><a href="#">Analytics</a></li>
+                    <li><a href="#">Resources</a></li>
+                </ul>
+            </div>
+
+            <div class="custom-nav-group">
+                <h3>Legal</h3>
+                <ul>
+                    <li><a href="#">Privacy</a></li>
+                    <li><a href="#">Terms & Conditions</a></li>
+                    <li><a href="#">Data Copyright</a></li>
+                    <li><a href="#">Cookies</a></li>
+                </ul>
+            </div>
+
+            <div class="custom-nav-group">
+                <h3>Subscribe to Our Newsletter</h3>
+                <div class="custom-newsletter">
+                    <input type="email" placeholder="Please enter your email">
+                    <button>→</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="custom-copyright">
+            © QS Quacquarelli Symonds Limited 1994 - 2024. All rights reserved.
+        </div>
+    </footer>
+    <script>
+        function navigateTo(url) {
+            window.location.href = url;
+        }
+
+    </script>
+</body>
+</html>
