@@ -160,7 +160,7 @@
 .box {
     position: relative;
     width: 380px;
-    height: 450px;
+    height: 400px;
     max-width: 400px;
     overflow: hidden;
     background: rgba(0, 0, 0, 0.8); 
@@ -466,16 +466,11 @@
             <!-- Login Form -->
             <div class="box" id="login-box">
                 <span class="borderLine"></span>
-                <form autocomplete='off' action="http://localhost:80/signup" method="POST" class="form">
+                <form autocomplete='off' action="http://localhost:80/api/login" method="POST" class="form">
                     <h1 class="gradient-text">TOP UNIVERSITIES</h1>
                     <div class="inputBox">                                                    
                         <input type="text" name="username" required="required">
-                        <span>Username</span>
-                        <i></i>
-                    </div>
-                    <div class="inputBox">                                                    
-                        <input type="email" name="Email" required="required">
-                        <span>Email</span>
+                        <span>Username/Email</span>
                         <i></i>
                     </div>
                     <div class="inputBox">
@@ -563,6 +558,7 @@
         function navigateTo(url) {
             window.location.href = url;
         }
+
     </script>
 </body>
 </html>
