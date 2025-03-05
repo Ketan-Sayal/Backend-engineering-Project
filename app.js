@@ -17,6 +17,7 @@ app.use(express.json());
 // Third-party middlewares
 app.use(cookieParser());
 app.use(morgan('dev'));
+app.use(cors());
 app.use(session({
     secret: 'secret-key',
     resave: false,
