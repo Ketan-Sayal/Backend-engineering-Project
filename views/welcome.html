@@ -170,7 +170,7 @@
                 educational opportunities and help you make informed decisions about your academic future.
             </p>
             
-            <button onclick="window.location='/login'" class="login-btn">
+            <button id="registerBtn" class="login-btn">
                 Login / Register
             </button>
 
@@ -193,5 +193,13 @@
             </div>
         </section>
     </div>
+    <script>
+        const registerBtn = document.getElementById("registerBtn");
+
+        registerBtn.addEventListener("click", ()=>{
+            window.location.href = '/login';
+        });
+
+    </script>
 </body>
 </html>

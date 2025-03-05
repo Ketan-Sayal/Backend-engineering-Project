@@ -4,8 +4,7 @@ const indexRouter = require('./api/apiIndexRoutes');
 const postRoutes = require('./api/apiHandlePost');
 const cors = require('cors');
 const cookieParser = require('cookie-parser');
-const flash = require('flash');
-const helmet = require('helmet');
+const flash = require('connect-flash');
 const session = require("express-session");
 const errorHandlerMiddleware = require('./middlewares/Errorhandler');
 const loggerMiddleware = require('./middlewares/Logger');
@@ -17,14 +16,12 @@ app.use(express.json());
 
 // Third-party middlewares
 app.use(cookieParser());
-app.use(cors());
 app.use(morgan('dev'));
-app.use(helmet());
-app.use(session{
+app.use(session({
     secret: 'secret-key',
     resave: false,
-    saveUninitialized: true,
-});
+    saveUninitialized: false,
+}));
 app.use(flash());
 
 // Routes middlewares
@@ -35,7 +32,7 @@ app.use('/api', postRoutes)
 app.use(errorHandlerMiddleware);
 app.use(loggerMiddleware);
 
-app.listen(3000, ()=>{
+app.listen(80, ()=>{
     console.log("Server is running on port 80")
-    console.log("http://localhost:3000")
+    console.log("http://localhost:80")
 })
