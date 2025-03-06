@@ -12,9 +12,9 @@ router.post('/login', (req, res)=>{
         const users = JSON.parse(data);
         const user = users.find(user=>user.username === username && user.password === password);
         if(user){
-            res.status(200).redirect('/home');
+            res.status(304).redirect('/home');
         }else{
-            res.status(302).redirect('/register');
+            res.status(304).redirect('/register');
         }
     })
 })
@@ -35,7 +35,7 @@ router.post('/signup', (req, res)=>{
             users.push({id, username, password, email:Email});
             fs.writeFile(path.join(__dirname, '../models/users.json'), JSON.stringify(users), (err)=>{
                 if(!err){
-                    res.status(200).redirect('/home');
+                    res.status(304).redirect('/home');
                 }else{
                     res.status(500).json({message: err});
                 }
