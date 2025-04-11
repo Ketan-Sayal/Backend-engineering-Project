@@ -1,9 +1,10 @@
+<!-- community page  -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>University Resources</title>
+    <title>University Community Page</title>
     <style>
         * {
             margin: 0;
@@ -13,13 +14,13 @@
 
         body {
             font-family: 'Arial', sans-serif;
-            background-color: #f4f4f4;
+            background-color: #f8f9fa;
             color: #333;
             line-height: 1.6;
         }
 
         header {
-            background-color: #004080;
+            background-color: #0056b3;
             color: #fff;
             padding: 20px;
             text-align: center;
@@ -37,7 +38,7 @@
 
         .intro {
             text-align: center;
-            margin-bottom: 30px;
+            margin-bottom: 40px;
         }
 
         .intro h2 {
@@ -50,13 +51,13 @@
             color: gray;
         }
 
-        .resources-grid {
+        .cards {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 20px;
         }
 
-        .resource-card {
+        .card {
             background: #fff;
             border: 1px solid #ddd;
             border-radius: 10px;
@@ -64,141 +65,87 @@
             transition: transform 0.3s, box-shadow 0.3s;
         }
 
-        .resource-card:hover {
+        .card:hover {
             transform: translateY(-10px);
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
         }
 
-        .resource-card img {
+        .card img {
             width: 100%;
             height: 200px;
             object-fit: cover;
         }
 
-        .resource-content {
+        .card-content {
             padding: 20px;
         }
 
-        .resource-content h3 {
+        .card-content h3 {
             font-size: 20px;
-            color: #004080;
+            color: #0056b3;
             margin-bottom: 10px;
         }
 
-        .resource-content p {
+        .card-content p {
             font-size: 14px;
             color: #666;
             margin-bottom: 15px;
         }
 
-        .resource-content a {
+        .card-content a {
             display: inline-block;
             text-decoration: none;
             color: #fff;
-            background: #004080;
+            background: #0056b3;
             padding: 10px 20px;
             border-radius: 5px;
             font-size: 14px;
             transition: background-color 0.3s;
         }
 
-        .resource-content a:hover {
-            background-color: #003366;
+        .card-content a:hover {
+            background-color: #004494;
         }
 
-        .custom-footer {
-        background: #1a1a1a;
-        color: white;
-        padding: 40px 20px;
-        font-family: Arial, sans-serif;
-    }
+        .community-section {
+            margin-top: 40px;
+        }
 
-    .custom-footer-container {
-        max-width: 1200px;
-        margin: 0 auto;
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-        gap: 30px;
-    }
+        .community-section h2 {
+            font-size: 28px;
+            color: #333;
+            margin-bottom: 20px;
+        }
 
-    .custom-footer .logo {
-        height: 40px;
-        margin-bottom: 20px;
-    }
+        .community-section ul {
+            list-style: none;
+        }
 
-    .custom-nav-group h3 {
-        color: white;
-        margin-bottom: 15px;
-        font-size: 16px;
-    }
+        .community-section ul li {
+            font-size: 16px;
+            color: #555;
+            margin: 10px 0;
+            display: flex;
+            align-items: center;
+        }
 
-    .custom-nav-group ul {
-        list-style: none;
-        padding: 0;
-    }
+        .community-section ul li i {
+            color: #0056b3;
+            margin-right: 10px;
+        }
 
-    .custom-nav-group li {
-        margin-bottom: 10px;
-    }
+        footer {
+            background: #0056b3;
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+        }
 
-    .custom-nav-group a {
-        color: #ffffff;
-        text-decoration: none;
-        font-size: 14px;
-    }
-
-    .custom-nav-group a:hover {
-        color: #ffc107;
-    }
-
-    .custom-social-icons {
-        display: flex;
-        gap: 15px;
-        margin-top: 20px;
-    }
-
-    .custom-social-icon {
-        background: #ffc107;
-        width: 35px;
-        height: 35px;
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: black;
-        text-decoration: none;
-    }
-
-    .custom-newsletter {
-        display: flex;
-        gap: 10px;
-        margin-top: 15px;
-    }
-
-    .custom-newsletter input {
-        padding: 10px;
-        border: none;
-        flex-grow: 1;
-        border-radius: 4px;
-    }
-
-    .custom-newsletter button {
-        background: #ffc107;
-        border: none;
-        padding: 10px 20px;
-        cursor: pointer;
-        border-radius: 4px;
-    }
-
-    .custom-copyright {
-        text-align: center;
-        margin-top: 40px;
-        padding-top: 20px;
-        border-top: 1px solid #333;
-        font-size: 12px;
-        color: #888
-    }
-    .main-nav {
+        footer p {
+            font-size: 14px;
+        }
+        .main-nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -299,6 +246,101 @@
 .btn-signup:hover {
     background-color: #218838;
 }
+.nav-group a:hover {
+    color: #ffc107;
+}
+.custom-footer {
+        background: #1a1a1a;
+        color: white;
+        padding: 40px 20px;
+        font-family: Arial, sans-serif;
+    }
+
+    .custom-footer-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 30px;
+    }
+
+    .custom-footer .logo {
+        height: 40px;
+        margin-bottom: 20px;
+    }
+
+    .custom-nav-group h3 {
+        color: white;
+        margin-bottom: 15px;
+        font-size: 16px;
+    }
+
+    .custom-nav-group ul {
+        list-style: none;
+        padding: 0;
+    }
+
+    .custom-nav-group li {
+        margin-bottom: 10px;
+    }
+
+    .custom-nav-group a {
+        color: #ffffff;
+        text-decoration: none;
+        font-size: 14px;
+    }
+
+    .custom-nav-group a:hover {
+        color: #ffc107;
+    }
+
+    .custom-social-icons {
+        display: flex;
+        gap: 15px;
+        margin-top: 20px;
+    }
+
+    .custom-social-icon {
+        background: #ffc107;
+        width: 35px;
+        height: 35px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: black;
+        text-decoration: none;
+    }
+
+    .custom-newsletter {
+        display: flex;
+        gap: 10px;
+        margin-top: 15px;
+    }
+
+    .custom-newsletter input {
+        padding: 10px;
+        border: none;
+        flex-grow: 1;
+        border-radius: 4px;
+    }
+
+    .custom-newsletter button {
+        background: #ffc107;
+        border: none;
+        padding: 10px 20px;
+        cursor: pointer;
+        border-radius: 4px;
+    }
+
+    .custom-copyright {
+        text-align: center;
+        margin-top: 40px;
+        padding-top: 20px;
+        border-top: 1px solid #333;
+        font-size: 12px;
+        color: #888;
+    }
     </style>
 </head>
 <body>
@@ -328,78 +370,59 @@
             
             <div class="nav-buttons">
                 <button onclick="navigateTo('/feestructure')" class="btn-fee" style="cursor: pointer;">Fee Structure</button>
+                <button onclick="navigateTo('/feestructure')" class="btn-fee" style="cursor: pointer;"><%=name%></button>
             </div>
         </nav>
         
     </navbar>
     <header>
-        <h1>University Resources</h1>
-        <p>Your gateway to educational and support resources.</p>
+        <h1>University Community</h1>
+        <p>Connect. Collaborate. Celebrate.</p>
     </header>
 
     <div class="container">
         <section class="intro">
-            <h2>Explore Our Resources</h2>
-            <p>Access the tools and materials you need to succeed in your academic journey.</p>
+            <h2>Welcome to Our Community</h2>
+            <p>Join our vibrant community of students, faculty, and alumni. Stay updated, share ideas, and participate in events.</p>
         </section>
 
-        <section class="resources-grid">
-            <div class="resource-card">
-                <img src="https://images.pexels.com/photos/2908984/pexels-photo-2908984.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Library Access">
-                <div class="resource-content">
-                    <h3>Library Access</h3>
-                    <p>Explore thousands of books, research papers, and digital resources available in our library.</p>
-                    <a href="#">Learn More</a>
+        <section class="cards">
+            <div class="card">
+                <img src="https://img.freepik.com/free-vector/coming-soon-announcement-background-with-megaphone_1017-39308.jpg?t=st=1735121372~exp=1735124972~hmac=cd07ca0d60ada6b04ed1543292f832e3101f7e7ce6aca174ef61dbcfa7b8a0ef&w=1480" alt="Announcements">
+                <div class="card-content">
+                    <h3>Latest Announcements</h3>
+                    <p>Stay informed with the latest news and updates from the university.</p>
+                    <a href="#">View Announcements</a>
                 </div>
             </div>
+            <div class="card">
+                <img src="https://images.pexels.com/photos/4940642/pexels-photo-4940642.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Events">
+                <div class="card-content">
+                    <h3>Upcoming Events</h3>
+                    <p>Don't miss out on exciting events, workshops, and seminars.</p>
+                    <a href="#">View Events</a>
+                </div>
+            </div>
+            <div class="card">
+                <img src="https://images.pexels.com/photos/8439697/pexels-photo-8439697.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Forums">
+                <div class="card-content">
+                    <h3>Discussion Forums</h3>
+                    <p>Connect with peers, ask questions, and share your ideas.</p>
+                    <a href="#">Join the Discussion</a>
+                </div>
+            </div>
+        </section>
 
-            <div class="resource-card">
-                <img src="https://img.freepik.com/free-vector/sheet-paper-education-template_23-2147503619.jpg?t=st=1735125146~exp=1735128746~hmac=e6f3e77325ba0e24ef1af0a320fb10d676c839508f1279a94df4fa6a8ed18ca6&w=1380" alt="Study Materials">
-                <div class="resource-content">
-                    <h3>Study Materials</h3>
-                    <p>Get access to course notes, guides, and assignments prepared by top educators.</p>
-                    <a href="#">Learn More</a>
-                </div>
-            </div>
-
-            <div class="resource-card">
-                <img src="https://img.freepik.com/free-photo/men-teach-women-how-work-with-laptops-work_1150-26818.jpg?t=st=1735125356~exp=1735128956~hmac=2a107103d21d6fc40867f3524ffebb66b96236876d02e85d00e3b2bc2f4c5920&w=1800" alt="Student Support">
-                <div class="resource-content">
-                    <h3>Student Support</h3>
-                    <p>Find counseling, mentorship, and academic assistance services to support your learning.</p>
-                    <a href="#">Learn More</a>
-                </div>
-            </div>
-
-            <div class="resource-card">
-                <img src="https://images.pexels.com/photos/1709003/pexels-photo-1709003.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Events and Workshops">
-                <div class="resource-content">
-                    <h3>Events and Workshops</h3>
-                    <p>Participate in engaging events, workshops, and training sessions held throughout the year.</p>
-                    <a href="#">Learn More</a>
-                </div>
-            </div>
-
-            <div class="resource-card">
-                <img src="https://img.freepik.com/free-vector/businesswoman-office-with-e-mail-marketing-icons_24877-51320.jpg?t=st=1735125536~exp=1735129136~hmac=125d99f192dab18636eb4cc76c8172a980a14e7c2df165fe47be9047cfddf059&w=1380" alt="Online Portals">
-                <div class="resource-content">
-                    <h3>Online Portals</h3>
-                    <p>Log in to your personalized student portal to manage academics, schedules, and more.</p>
-                    <a href="#">Learn More</a>
-                </div>
-            </div>
-
-            <div class="resource-card">
-                <img src="https://img.freepik.com/free-photo/occupations-career-employment-recruitment-position-concept_53876-64962.jpg?t=st=1735125613~exp=1735129213~hmac=e5eb317fb3ee6461f4519e28ff6da11de93bbe90cdaef5bf3516e906b96aa3ed&w=2000" alt="Career Services">
-                <div class="resource-content">
-                    <h3>Career Services</h3>
-                    <p>Discover internships, job opportunities, and career counseling to plan your future.</p>
-                    <a href="#">Learn More</a>
-                </div>
-            </div>
+        <section class="community-section">
+            <h2>Get Involved</h2>
+            <ul>
+                <li><i>&#9733;</i> Start a club or join one that interests you.</li>
+                <li><i>&#9733;</i> Participate in university-wide events and competitions.</li>
+                <li><i>&#9733;</i> Share your success stories to inspire others.</li>
+                <li><i>&#9733;</i> Volunteer for community service projects.</li>
+            </ul>
         </section>
     </div>
-
     <footer class="custom-footer">
         <div class="custom-footer-container">
             <div class="custom-nav-group">
@@ -454,6 +477,9 @@
             © QS Quacquarelli Symonds Limited 1994 - 2024. All rights reserved.
         </div>
     </footer>
+    <!-- <footer>
+        <p>&copy; 2024 University Community. All rights reserved.</p>
+    </footer> -->
     <script>
         function navigateTo(url) {
             window.location.href = url;

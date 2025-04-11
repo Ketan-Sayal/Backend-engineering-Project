@@ -1,57 +1,69 @@
 const express = require('express');
 const router = express.Router();
+const {getUserData} = require('../middlewares/getUser');
 const path = require('path'); 
 
 router.get('/', (req, res)=>{
-    res.status(200).sendFile(path.join(__dirname, '../views/welcome.html'))
+    res.status(200).render('welcome.ejs');
 })
 
 router.get('/login', (req, res)=>{
-    res.status(200).sendFile(path.join(__dirname, '../views/login.html'))
+    res.status(200).render('login.ejs');
 })
 
-router.get('/home', (req, res)=>{
-    res.status(200).sendFile(path.join(__dirname, '../views/home.html'))
+router.get('/home', getUserData, (req, res)=>{
+    const {username} = req.user;
+    res.status(200).render('home.ejs', {name:username});
 })
 
-router.get('/discover', (req, res)=>{
-    res.status(200).sendFile(path.join(__dirname, '../views/discover.html'))
+router.get('/discover', getUserData, (req, res)=>{
+    const {username} = req.user;
+    res.status(200).render('discover.ejs', {name:username});
 })
 
-router.get('/events', (req, res)=>{
-    res.status(200).sendFile(path.join(__dirname, '../views/events.html'))
+router.get('/events', getUserData, (req, res)=>{
+    const {username} = req.user;
+    res.status(200).render('events.ejs', {name:username}, );
 })
 
-router.get('/prepare', (req, res)=>{
-    res.status(200).sendFile(path.join(__dirname, '../views/prepare.html'))
+router.get('/prepare', getUserData, (req, res)=>{
+    const {username} = req.user;
+    res.status(200).render('prepare.ejs', {name:username});
 })
 
-router.get('/careers', (req, res)=>{
-    res.status(200).sendFile(path.join(__dirname, '../views/careers.html'))
+router.get('/careers', getUserData, (req, res)=>{
+    const {username} = req.user;
+    res.status(200).render('careers.ejs', {name:username});
 })
 
-router.get('/community', (req, res)=>{
-    res.status(200).sendFile(path.join(__dirname, '../views/community.html'))
+router.get('/community', getUserData, (req, res)=>{
+    const {username} = req.user;
+    res.status(200).render('community.ejs', {name:username});
 })
 
-router.get('/courses', (req, res)=>{
-    res.status(200).sendFile(path.join(__dirname, '../views/courses.html'))
+router.get('/courses', getUserData, (req, res)=>{
+    const {username} = req.user;
+    res.status(200).render('courses.ejs', {name:username});
 })
 
-router.get('/rankings', (req, res)=>{
-    res.status(200).sendFile(path.join(__dirname, '../views/ranking.html'))
+router.get('/rankings', getUserData, (req, res)=>{
+    const {username} = req.user;
+    res.status(200).render('ranking.ejs', {name:username});
 })
 
-router.get('/Resources', (req, res)=>{
-    res.status(200).sendFile(path.join(__dirname, '../views/resources.html'))
+router.get('/Resources', getUserData, (req, res)=>{
+    const {username} = req.user;
+    res.status(200).render('resources.ejs', {name:username});
 })
 
-router.get('/feestructure', (req, res)=>{
-    res.status(200).sendFile(path.join(__dirname, '../views/feestructure.html'))
+router.get('/feestructure', getUserData, (req, res)=>{
+    const {username} = req.user;
+    res.status(200).render('feestructure.ejs', {name:username});
 })
 
 router.get('/register', (req, res)=>{
-    res.status(200).sendFile(path.join(__dirname, '../views/signUp.html'))
+    res.status(200).render('signUp.ejs');
 })
+
 
 module.exports = router;

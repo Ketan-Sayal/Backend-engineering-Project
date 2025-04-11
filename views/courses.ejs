@@ -1,10 +1,9 @@
-<!-- community page  -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>University Community Page</title>
+    <title>University Courses</title>
     <style>
         * {
             margin: 0;
@@ -20,7 +19,7 @@
         }
 
         header {
-            background-color: #0056b3;
+            background-color: #004080;
             color: #fff;
             padding: 20px;
             text-align: center;
@@ -51,13 +50,13 @@
             color: gray;
         }
 
-        .cards {
+        .courses-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 20px;
         }
 
-        .card {
+        .course-card {
             background: #fff;
             border: 1px solid #ddd;
             border-radius: 10px;
@@ -65,86 +64,49 @@
             transition: transform 0.3s, box-shadow 0.3s;
         }
 
-        .card:hover {
+        .course-card:hover {
             transform: translateY(-10px);
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
         }
 
-        .card img {
+        .course-card img {
             width: 100%;
             height: 200px;
             object-fit: cover;
         }
 
-        .card-content {
+        .course-content {
             padding: 20px;
         }
 
-        .card-content h3 {
+        .course-content h3 {
             font-size: 20px;
-            color: #0056b3;
+            color: #004080;
             margin-bottom: 10px;
         }
 
-        .card-content p {
+        .course-content p {
             font-size: 14px;
             color: #666;
             margin-bottom: 15px;
         }
 
-        .card-content a {
+        .course-content a {
             display: inline-block;
             text-decoration: none;
             color: #fff;
-            background: #0056b3;
+            background: #004080;
             padding: 10px 20px;
             border-radius: 5px;
             font-size: 14px;
             transition: background-color 0.3s;
         }
 
-        .card-content a:hover {
-            background-color: #004494;
+        .course-content a:hover {
+            background-color: #003366;
         }
 
-        .community-section {
-            margin-top: 40px;
-        }
-
-        .community-section h2 {
-            font-size: 28px;
-            color: #333;
-            margin-bottom: 20px;
-        }
-
-        .community-section ul {
-            list-style: none;
-        }
-
-        .community-section ul li {
-            font-size: 16px;
-            color: #555;
-            margin: 10px 0;
-            display: flex;
-            align-items: center;
-        }
-
-        .community-section ul li i {
-            color: #0056b3;
-            margin-right: 10px;
-        }
-
-        footer {
-            background: #0056b3;
-            color: #fff;
-            text-align: center;
-            padding: 20px;
-            margin-top: 40px;
-        }
-
-        footer p {
-            font-size: 14px;
-        }
+        
         .main-nav {
     display: flex;
     justify-content: space-between;
@@ -246,9 +208,6 @@
 .btn-signup:hover {
     background-color: #218838;
 }
-.nav-group a:hover {
-    color: #ffc107;
-}
 .custom-footer {
         background: #1a1a1a;
         color: white;
@@ -341,6 +300,7 @@
         font-size: 12px;
         color: #888;
     }
+        
     </style>
 </head>
 <body>
@@ -370,56 +330,76 @@
             
             <div class="nav-buttons">
                 <button onclick="navigateTo('/feestructure')" class="btn-fee" style="cursor: pointer;">Fee Structure</button>
+                <button onclick="navigateTo('/feestructure')" class="btn-fee" style="cursor: pointer;"><%=name%></button>
             </div>
         </nav>
         
     </navbar>
     <header>
-        <h1>University Community</h1>
-        <p>Connect. Collaborate. Celebrate.</p>
+        <h1>Our Courses</h1>
+        <p>Explore a variety of programs and subjects to fuel your passion for learning.</p>
     </header>
 
     <div class="container">
         <section class="intro">
-            <h2>Welcome to Our Community</h2>
-            <p>Join our vibrant community of students, faculty, and alumni. Stay updated, share ideas, and participate in events.</p>
+            <h2>Find the Right Course for You</h2>
+            <p>Browse through our range of courses and programs tailored to meet your educational goals.</p>
         </section>
 
-        <section class="cards">
-            <div class="card">
-                <img src="https://img.freepik.com/free-vector/coming-soon-announcement-background-with-megaphone_1017-39308.jpg?t=st=1735121372~exp=1735124972~hmac=cd07ca0d60ada6b04ed1543292f832e3101f7e7ce6aca174ef61dbcfa7b8a0ef&w=1480" alt="Announcements">
-                <div class="card-content">
-                    <h3>Latest Announcements</h3>
-                    <p>Stay informed with the latest news and updates from the university.</p>
-                    <a href="#">View Announcements</a>
+        <section class="courses-grid">
+            <div class="course-card">
+                <img src="https://img.freepik.com/free-photo/programming-background-collage_23-2149901789.jpg?t=st=1735123217~exp=1735126817~hmac=5563f7fc0100158da5f8e0370d291f7ed5548221d6be59d1add66bb7473febfa&w=1800" alt="Computer Science">
+                <div class="course-content">
+                    <h3>Computer Science</h3>
+                    <p>Learn programming, algorithms, and software development with our top-tier faculty.</p>
+                    <a href="#">View Details</a>
                 </div>
             </div>
-            <div class="card">
-                <img src="https://images.pexels.com/photos/4940642/pexels-photo-4940642.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Events">
-                <div class="card-content">
-                    <h3>Upcoming Events</h3>
-                    <p>Don't miss out on exciting events, workshops, and seminars.</p>
-                    <a href="#">View Events</a>
-                </div>
-            </div>
-            <div class="card">
-                <img src="https://images.pexels.com/photos/8439697/pexels-photo-8439697.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Forums">
-                <div class="card-content">
-                    <h3>Discussion Forums</h3>
-                    <p>Connect with peers, ask questions, and share your ideas.</p>
-                    <a href="#">Join the Discussion</a>
-                </div>
-            </div>
-        </section>
 
-        <section class="community-section">
-            <h2>Get Involved</h2>
-            <ul>
-                <li><i>&#9733;</i> Start a club or join one that interests you.</li>
-                <li><i>&#9733;</i> Participate in university-wide events and competitions.</li>
-                <li><i>&#9733;</i> Share your success stories to inspire others.</li>
-                <li><i>&#9733;</i> Volunteer for community service projects.</li>
-            </ul>
+            <div class="course-card">
+                <img src="https://img.freepik.com/free-vector/people-analyzing-growth-charts_23-2148866843.jpg?t=st=1735123264~exp=1735126864~hmac=a601af01930320fdcdd321c88699f93b70f99e18a2b64d358744e68dd686ec2d&w=1800" alt="Business Administration">
+                <div class="course-content">
+                    <h3>Business Administration</h3>
+                    <p>Develop leadership and management skills to excel in the corporate world.</p>
+                    <a href="#">View Details</a>
+                </div>
+            </div>
+
+            <div class="course-card">
+                <img src="https://img.freepik.com/free-photo/two-colleagues-factory_1303-14331.jpg?t=st=1735123334~exp=1735126934~hmac=5f798ea9b8132d2e449e633994539b1a01387e45b87c675e33811a9af53b9fe7&w=1800" alt="Engineering">
+                <div class="course-content">
+                    <h3>Engineering</h3>
+                    <p>Master the principles of engineering with hands-on experience and expert guidance.</p>
+                    <a href="#">View Details</a>
+                </div>
+            </div>
+
+            <div class="course-card">
+                <img src="https://img.freepik.com/free-photo/young-hispanic-woman-pharmacist-smiling-confident-standing-with-arms-crossed-gesture-pharmacy_839833-7087.jpg?t=st=1735123396~exp=1735126996~hmac=6f6511e694e9f8f2c70c3204b8de214ef777b12739a0e19c3a9c1cf0835b8725&w=1800" alt="Medicine">
+                <div class="course-content">
+                    <h3>Medicine</h3>
+                    <p>Join our world-class medical program and make a difference in healthcare.</p>
+                    <a href="#">View Details</a>
+                </div>
+            </div>
+
+            <div class="course-card">
+                <img src="https://img.freepik.com/free-psd/3d-rendering-justice-still-life-background_23-2150833730.jpg?t=st=1735123436~exp=1735127036~hmac=bf7451dcdb82cd130ab03c3ebe1ccd0012611f8a865ff641e5df39ed69f0a751&w=1800" alt="Law">
+                <div class="course-content">
+                    <h3>Law</h3>
+                    <p>Study the foundations of legal systems and become a skilled practitioner.</p>
+                    <a href="#">View Details</a>
+                </div>
+            </div>
+
+            <div class="course-card">
+                <img src="https://images.pexels.com/photos/1370298/pexels-photo-1370298.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Arts">
+                <div class="course-content">
+                    <h3>Arts</h3>
+                    <p>Explore your creativity and passion through our diverse arts programs.</p>
+                    <a href="#">View Details</a>
+                </div>
+            </div>
         </section>
     </div>
     <footer class="custom-footer">
@@ -476,9 +456,6 @@
             © QS Quacquarelli Symonds Limited 1994 - 2024. All rights reserved.
         </div>
     </footer>
-    <!-- <footer>
-        <p>&copy; 2024 University Community. All rights reserved.</p>
-    </footer> -->
     <script>
         function navigateTo(url) {
             window.location.href = url;
@@ -487,3 +464,4 @@
     </script>
 </body>
 </html>
+<!-- Our courses -->

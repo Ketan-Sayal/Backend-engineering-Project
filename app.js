@@ -1,3 +1,4 @@
+const path = require('path');
 const express = require('express');
 const morgan = require('morgan');
 const indexRouter = require('./api/apiIndexRoutes');
@@ -25,6 +26,10 @@ app.use(session({
 }));
 app.use(flash());
 
+// Ejs setup
+app.set('view engine', 'ejs');
+app.set("views", path.join(__dirname, "views"));
+
 // Routes middlewares
 app.use('/', indexRouter);
 app.use('/api', postRoutes)
@@ -35,5 +40,15 @@ app.use(loggerMiddleware);
 
 app.listen(80, ()=>{
     console.log("Server is running on port 80")
-    console.log("http://localhost:80")
+    console.log("\nhttp://localhost:80")
+}).on("error", (err)=>{
+    if(err.code === "EADDRINUSE"){
+        app.listen(3000, ()=>{
+            console.log("Port 80 is busy and server is tring to run it on port 3000");
+            console.log("Server is running at port 3000");
+            console.log("\nhttp://localhost:80");
+        });
+    }
+    console.log(err.message);
+    
 })
