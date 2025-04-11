@@ -46,7 +46,7 @@ app.listen(80, ()=>{
         app.listen(3000, ()=>{
             console.log("Port 80 is busy and server is tring to run it on port 3000");
             console.log("Server is running at port 3000");
-            console.log("\nhttp://localhost:80");
+            console.log("\nhttp://localhost:3000");
         });
     }
     console.log(err.message);
