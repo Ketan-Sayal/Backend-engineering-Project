@@ -9,7 +9,9 @@ const flash = require('connect-flash');
 const session = require("express-session");
 const errorHandlerMiddleware = require('./middlewares/Errorhandler');
 const loggerMiddleware = require('./middlewares/Logger');
+const { connectDB } = require('./db');
 const app = express();
+require("dotenv").config();
 
 // Middlewares
 app.use(express.urlencoded({"extended": true}));
@@ -38,17 +40,22 @@ app.use('/api', postRoutes)
 app.use(errorHandlerMiddleware);
 app.use(loggerMiddleware);
 
-app.listen(80, ()=>{
-    console.log("Server is running on port 80")
-    console.log("\nhttp://localhost:80")
-}).on("error", (err)=>{
-    if(err.code === "EADDRINUSE"){
-        app.listen(3000, ()=>{
-            console.log("Port 80 is busy and server is trying to run it on port 3000");
-            console.log("Server is running at port 3000");
-            console.log("\nhttp://localhost:3000");
-        });
-    }
-    console.log(err.message);
-    
-})
+// Port
+const PORT = process.env.PORT|| 3000;
+
+connectDB().then(()=>{
+    app.listen(PORT, ()=>{
+        console.log("Server is running on port 80")
+        console.log(`\nhttp://localhost:${PORT}`)
+    }).on("error", (err)=>{
+        if(err.code === "EADDRINUSE"){
+            app.listen(3000, ()=>{
+                console.log("Port 80 is busy and server is trying to run it on port 3000");
+                console.log("Server is running at port 3000");
+                console.log("\nhttp://localhost:3000");
+            });
+        }
+        console.log(err.message);
+        
+    });
+}).catch(err=>console.log(err));

@@ -397,6 +397,94 @@
     margin-right: 10px;
 }
 
+/* Error message styling */
+.error-message {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    min-width: 300px;
+    max-width: 80%;
+    background: rgba(255, 0, 0, 0.9);
+    color: white;
+    padding: 15px 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(255, 0, 0, 0.6), 
+                0 0 30px rgba(255, 0, 0, 0.4),
+                0 0 40px rgba(255, 0, 0, 0.2);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1000;
+    animation: errorPulse 2s infinite;
+    backdrop-filter: blur(5px);
+    border-left: 5px solid #ff0000;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+    letter-spacing: 0.03em;
+}
+
+.error-message.hidden {
+    display: none;
+}
+
+.error-message p {
+    margin: 0;
+    font-size: 1em;
+}
+
+.error-message .close-btn {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.2em;
+    cursor: pointer;
+    margin-left: 15px;
+    transition: transform 0.3s;
+}
+
+.error-message .close-btn:hover {
+    transform: scale(1.2);
+}
+
+@keyframes errorPulse {
+    0% {
+        box-shadow: 0 0 20px rgba(255, 0, 0, 0.6), 
+                    0 0 30px rgba(255, 0, 0, 0.4);
+    }
+    50% {
+        box-shadow: 0 0 25px rgba(255, 0, 0, 0.8), 
+                    0 0 40px rgba(255, 0, 0, 0.6),
+                    0 0 60px rgba(255, 0, 0, 0.3);
+    }
+    100% {
+        box-shadow: 0 0 20px rgba(255, 0, 0, 0.6), 
+                    0 0 30px rgba(255, 0, 0, 0.4);
+    }
+}
+
+/* Test error button */
+.test-error-btn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: rgba(0, 255, 0, 0.8);
+    color: black;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    z-index: 1000;
+}
+
+.test-error-btn:hover {
+    background: rgba(255, 0, 255, 0.8);
+    color: white;
+    transform: scale(1.05);
+}
+
 @media screen and (max-width: 1024px) {
     body > div {
         flex-direction: column;
@@ -413,6 +501,11 @@
     .right {
         padding:10% ;
         height:100% ;
+    }
+    
+    .error-message {
+        width: 90%;
+        max-width: 90%;
     }
 }
 
@@ -443,11 +536,22 @@
     .box form input[type="submit"] {
         width: 100%;
     }
+    
+    .error-message {
+        font-size: 0.9em;
+        padding: 12px 15px;
+    }
 }
     </style>
 </head>
 <body>
-    <div style="display: flex;">
+    <div style="display: flex">
+        <!-- Error message container -->
+        <div id="error-message" class="error-message hidden">
+            <p id="error-text"></p>
+            <button class="close-btn" onclick="toggleError()">×</button>
+        </div>
+        
         <div class="left" style="width: 50%;">
             <div class="container">
                 <div class="card blue-card">
@@ -466,15 +570,15 @@
             <!-- Login Form -->
             <div class="box" id="login-box">
                 <span class="borderLine"></span>
-                <form autocomplete='off' action="/api/login" method="POST" class="form">
+                <form autocomplete='off' action="/api/login" method="POST" class="form" onsubmit="return validateForm()">
                     <h1 class="gradient-text">TOP UNIVERSITIES</h1>
                     <div class="inputBox">                                                    
-                        <input type="text" name="username" required="required">
+                        <input type="text" name="username" required="required" id="username">
                         <span>Username/Email</span>
                         <i></i>
                     </div>
                     <div class="inputBox">
-                        <input type="password" name="password" required="required">
+                        <input type="password" name="password" required="required" id="password">
                         <span>Password</span>
                         <i></i>
                     </div>
@@ -490,6 +594,9 @@
             </div>
         </div>
     </div>
+
+    <!-- For testing purposes -->
+    <button class="test-error-btn" onclick="showError('This is a test error message!')">Test Error Message</button>
 
     <script>
         var tl1 = gsap.timeline() ;
@@ -553,12 +660,103 @@
             opacity:0 ,
             ease:"expo.out" 
         },"anim1");
-    </script>
-    <script>
+        
+        // Error handling functions
+        function showError(message) {
+            const errorElement = document.getElementById('error-message');
+            const errorText = document.getElementById('error-text');
+            
+            errorText.textContent = message;
+            errorElement.classList.remove('hidden');
+            
+            // Add animation using GSAP
+            gsap.from(errorElement, {
+                y: -100,
+                opacity: 0,
+                duration: 0.5,
+                ease: "bounce.out"
+            });
+            
+            // Auto-hide after 5 seconds
+            setTimeout(() => {
+                hideError();
+            }, 5000);
+        }
+        
+        function hideError() {
+            const errorElement = document.getElementById('error-message');
+            
+            gsap.to(errorElement, {
+                y: -50,
+                opacity: 0,
+                duration: 0.3,
+                onComplete: function() {
+                    errorElement.classList.add('hidden');
+                    errorElement.style.opacity = 1;
+                    errorElement.style.transform = 'translateX(-50%)';
+                }
+            });
+        }
+        
+        function toggleError() {
+            const errorElement = document.getElementById('error-message');
+            
+            if (errorElement.classList.contains('hidden')) {
+                showError('Error message toggled on');
+            } else {
+                hideError();
+            }
+        }
+        
+        // Form validation - example implementation
+        function validateForm() {
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            
+            if (username.trim() === '') {
+                showError('Username cannot be empty');
+                return false;
+            }
+            
+            if (password.length < 6) {
+                showError('Password must be at least 6 characters');
+                return false;
+            }
+            
+            return true;
+        }
+        
+        // Handle server-side errors
+        window.onload = function() {
+            // Check if there's an error from the server (you need to implement this part)
+            // For example purposes, uncomment this line to show an error on page load:
+            // showError('Invalid credentials. Please try again.');
+            
+            // If your server returns an error parameter in the URL
+            const urlParams = new URLSearchParams(window.location.search);
+            if (urlParams.has('error')) {
+                showError(decodeURIComponent(urlParams.get('error')));
+            }
+            
+            // Or if your server sets an error in a template variable
+            // This would match your current implementation, but needs to be adapted
+            // to your server-side rendering approach
+            <% if (typeof error !== 'undefined' && error.length > 0) { %>
+                showError("<%= error %>");
+            <% } %>
+        };
+        
         function navigateTo(url) {
             window.location.href = url;
         }
-
+        
+        // Update date display
+        document.addEventListener('DOMContentLoaded', function() {
+            const date = new Date();
+            const months = ["JAN", "FEB", "MAR", "APR", "MAY", "JUNE", "JULY", "AUG", "SEPT", "OCT", "NOV", "DEC"];
+            const dateElement = document.getElementById('current-date');
+            dateElement.innerHTML = months[date.getMonth()] + '<span>' + date.getDate() + '</span>';
+        });
     </script>
 </body>
 </html>

@@ -349,67 +349,24 @@
             <p>Browse through our range of courses and programs tailored to meet your educational goals.</p>
         </section>
 
-        <section class="courses-grid">
-            <div class="course-card">
-                <img src="https://img.freepik.com/free-photo/programming-background-collage_23-2149901789.jpg?t=st=1735123217~exp=1735126817~hmac=5563f7fc0100158da5f8e0370d291f7ed5548221d6be59d1add66bb7473febfa&w=1800"
-                    alt="Computer Science">
-                <div class="course-content">
-                    <h3>Computer Science</h3>
-                    <p>Learn programming, algorithms, and software development with our top-tier faculty.</p>
-                    <a href="#">View Details</a>
-                </div>
-            </div>
-
-            <div class="course-card">
-                <img src="https://img.freepik.com/free-vector/people-analyzing-growth-charts_23-2148866843.jpg?t=st=1735123264~exp=1735126864~hmac=a601af01930320fdcdd321c88699f93b70f99e18a2b64d358744e68dd686ec2d&w=1800"
-                    alt="Business Administration">
-                <div class="course-content">
-                    <h3>Business Administration</h3>
-                    <p>Develop leadership and management skills to excel in the corporate world.</p>
-                    <a href="#">View Details</a>
-                </div>
-            </div>
-
-            <div class="course-card">
-                <img src="https://img.freepik.com/free-photo/two-colleagues-factory_1303-14331.jpg?t=st=1735123334~exp=1735126934~hmac=5f798ea9b8132d2e449e633994539b1a01387e45b87c675e33811a9af53b9fe7&w=1800"
-                    alt="Engineering">
-                <div class="course-content">
-                    <h3>Engineering</h3>
-                    <p>Master the principles of engineering with hands-on experience and expert guidance.</p>
-                    <a href="#">View Details</a>
-                </div>
-            </div>
-
-            <div class="course-card">
-                <img src="https://img.freepik.com/free-photo/young-hispanic-woman-pharmacist-smiling-confident-standing-with-arms-crossed-gesture-pharmacy_839833-7087.jpg?t=st=1735123396~exp=1735126996~hmac=6f6511e694e9f8f2c70c3204b8de214ef777b12739a0e19c3a9c1cf0835b8725&w=1800"
-                    alt="Medicine">
-                <div class="course-content">
-                    <h3>Medicine</h3>
-                    <p>Join our world-class medical program and make a difference in healthcare.</p>
-                    <a href="#">View Details</a>
-                </div>
-            </div>
-
-            <div class="course-card">
-                <img src="https://img.freepik.com/free-psd/3d-rendering-justice-still-life-background_23-2150833730.jpg?t=st=1735123436~exp=1735127036~hmac=bf7451dcdb82cd130ab03c3ebe1ccd0012611f8a865ff641e5df39ed69f0a751&w=1800"
-                    alt="Law">
-                <div class="course-content">
-                    <h3>Law</h3>
-                    <p>Study the foundations of legal systems and become a skilled practitioner.</p>
-                    <a href="#">View Details</a>
-                </div>
-            </div>
-
-            <div class="course-card">
-                <img src="https://images.pexels.com/photos/1370298/pexels-photo-1370298.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
-                    alt="Arts">
-                <div class="course-content">
-                    <h3>Arts</h3>
-                    <p>Explore your creativity and passion through our diverse arts programs.</p>
-                    <a href="#">View Details</a>
-                </div>
-            </div>
-        </section>
+            <section class="courses-grid">
+                <% if(courses && courses.length > 0) { %>
+                    <% careers.forEach(function(career) { %>
+                        <div class="course-card">
+                            <img src="<%= career.imageUrl %>" alt="<%= course.title %>">
+                            <div class="course-content">
+                                <h3><%= career.title %></h3>
+                                <p><%= career.description %></p>
+                                <a href="/career/<%= career._id %>">View Details</a>
+                            </div>
+                        </div>
+                    <% }); %>
+                <% } else { %>
+                    <div class="no-courses">
+                        <p>No courses available at the moment. Please check back later.</p>
+                    </div>
+                <% } %>
+            </section>
     </div>
     <footer class="custom-footer">
         <div class="custom-footer-container">

@@ -1,10 +1,16 @@
+const jwt = require('jsonwebtoken');
+
 module.exports.getUserData = (req, res, next)=>{
     try {
-        const data = req.cookies.userData;
+        const token = req.cookies.userData;
+        if(!token){
+            res.redirect('/login');
+        }
+        const data = jwt.verify(token, process.env.JWT_ACCESS_TOKEN)
         if(!data) res.redirect('/login');
         req.user = data;
     } catch (error) {
-        console.log(err);
+        throw new Error(err);
     } 
     next();
 }

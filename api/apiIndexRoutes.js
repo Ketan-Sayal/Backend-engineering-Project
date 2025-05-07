@@ -8,7 +8,8 @@ router.get('/', (req, res)=>{
 })
 
 router.get('/login', (req, res)=>{
-    res.status(200).render('login.ejs');
+    const error = req.flash("error-login");
+    res.status(200).render('login.ejs', {error:error});
 })
 
 router.get('/home', getUserData, (req, res)=>{
@@ -62,7 +63,8 @@ router.get('/feestructure', getUserData, (req, res)=>{
 })
 
 router.get('/register', (req, res)=>{
-    res.status(200).render('signUp.ejs');
+    const error = req.flash("error-register")
+    res.status(200).render('signUp.ejs', {error:error});
 })
 
 
