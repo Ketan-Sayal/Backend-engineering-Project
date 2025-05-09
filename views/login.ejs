@@ -595,9 +595,6 @@
         </div>
     </div>
 
-    <!-- For testing purposes -->
-    <button class="test-error-btn" onclick="showError('This is a test error message!')">Test Error Message</button>
-
     <script>
         var tl1 = gsap.timeline() ;
         var tl2 = gsap.timeline() ;
@@ -670,12 +667,16 @@
             errorElement.classList.remove('hidden');
             
             // Add animation using GSAP
-            gsap.from(errorElement, {
-                y: -100,
-                opacity: 0,
-                duration: 0.5,
-                ease: "bounce.out"
-            });
+            gsap.fromTo(errorElement, {
+        y: -100,
+        opacity: 0
+    },
+    {
+        y: 0,
+        opacity: 1,
+        duration: 0.5,
+        ease: "bounce.out"
+    });
             
             // Auto-hide after 5 seconds
             setTimeout(() => {
@@ -687,7 +688,7 @@
             const errorElement = document.getElementById('error-message');
             
             gsap.to(errorElement, {
-                y: -50,
+                y: 0,
                 opacity: 0,
                 duration: 0.3,
                 onComplete: function() {

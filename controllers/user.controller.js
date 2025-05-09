@@ -16,14 +16,14 @@ module.exports.loginUser = asyncHandler(async(req, res)=>{
     const user = await User.findOne({$or:[{username:username}, {password:password}]});
 
     if(!user){
-        req.flash("error-register", "User doesn't exist");
+        req.flash("error-register", "User doesnot exist");
         return res.redirect("/register");
     }
     
-    const isPasswordCorrect = user.isPasswordCorrect(password);
+    const isPasswordCorrect = await user.isPasswordCorrect(password);
 
     if(!isPasswordCorrect){
-        req.flash("error-login", "User doesn't exist");
+        req.flash("error-login", "User doesnot exist");
         return res.status(302).redirect("/login");
     }
 

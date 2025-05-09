@@ -2,6 +2,8 @@ const express = require('express');
 const router = express.Router();
 const {getUserData} = require('../middlewares/getUser');
 const path = require('path'); 
+const Course = require('../models/course.model');
+const Career = require('../models/career.model');
 
 router.get('/', (req, res)=>{
     res.status(200).render('welcome.ejs');
@@ -32,9 +34,28 @@ router.get('/prepare', getUserData, (req, res)=>{
     res.status(200).render('prepare.ejs', {name:username});
 })
 
-router.get('/careers', getUserData, (req, res)=>{
+router.get('/careers', getUserData, async(req, res)=>{
     const {username} = req?.user;
-    res.status(200).render('careers.ejs', {name:username});
+    const careers = await Career.aggregate([{
+        $lookup:{
+            from:"users",
+            localField:"owner",
+            foreignField:"_id",
+            as:"ownerUsername",
+            pipeline:[{
+                $project:{
+                    username:1
+                }
+            }]
+        }
+    }, {
+        $addFields:{
+            owner:{
+                $first:"$ownerUsername"
+            }
+        }
+    }]);
+    res.status(200).render('careers.ejs', {name:username, careers:careers||[]});
 })
 
 router.get('/community', getUserData, (req, res)=>{
@@ -42,9 +63,29 @@ router.get('/community', getUserData, (req, res)=>{
     res.status(200).render('community.ejs', {name:username});
 })
 
-router.get('/courses', getUserData, (req, res)=>{
+router.get('/courses', getUserData, async(req, res)=>{
     const {username} = req?.user;
-    res.status(200).render('courses.ejs', {name:username});
+
+    const courses = await Course.aggregate([{
+        $lookup:{
+            from:"users",
+            localField:"owner",
+            foreignField:"_id",
+            as:"ownerUsername",
+            pipeline:[{
+                $project:{
+                    username:1
+                }
+            }]
+        }
+    }, {
+        $addFields:{
+            owner:{
+                $first:"$ownerUsername"
+            }
+        }
+    }]);
+    res.status(200).render('courses.ejs', {name:username, courses:courses|| []});
 })
 
 router.get('/rankings', getUserData, (req, res)=>{

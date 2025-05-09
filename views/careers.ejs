@@ -302,6 +302,11 @@
             font-size: 12px;
             color: #888;
         }
+        .no-courses{
+        font-weight: bold;
+        text-align: center;
+        font-size: 2rem;
+    }
     </style>
 </head>
 
@@ -350,7 +355,7 @@
         </section>
 
             <section class="courses-grid">
-                <% if(courses && courses.length > 0) { %>
+                <% if(careers && careers.length > 0) { %>
                     <% careers.forEach(function(career) { %>
                         <div class="course-card">
                             <img src="<%= career.imageUrl %>" alt="<%= course.title %>">
@@ -363,7 +368,7 @@
                     <% }); %>
                 <% } else { %>
                     <div class="no-courses">
-                        <p>No courses available at the moment. Please check back later.</p>
+                        <p>No careers available at the moment. Please check back later.</p>
                     </div>
                 <% } %>
             </section>
