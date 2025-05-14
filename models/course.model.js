@@ -23,6 +23,11 @@ const courseSchema = new mongoose.Schema({
     enum: ['Computer Science', 'Business Administration', 'Engineering', 'Medicine', 'Law', 'Arts', 'Other'],
     default: 'Other'
   },
+  videos:[{
+    type:mongoose.Schema.Types.ObjectId,
+    ref:"Video",
+    default:[]
+  }]
 }, {timestamps:true});
 
 const Course = mongoose.model('Course', courseSchema);

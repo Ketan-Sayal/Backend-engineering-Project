@@ -59,4 +59,4 @@ module.exports.registerUser = asyncHandler(async(req, res, next)=>{
     const token = createdUser.generateAccessToken();
     return res.status(302).cookie("userData", token).redirect("/home");
 
-})
+});

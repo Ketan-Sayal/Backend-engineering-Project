@@ -16,6 +16,7 @@ require("dotenv").config();
 // Middlewares
 app.use(express.urlencoded({"extended": true}));
 app.use(express.json());
+app.use(express.static(path.join(__dirname, "public")));
 
 // Third-party middlewares
 app.use(cookieParser());

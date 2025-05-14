@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Video to Course</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+    <style>
+        .progress {
+            height: 25px;
+        }
+        .progress-bar {
+            transition: width 0.5s ease;
+        }
+        .file-preview {
+            max-width: 100%;
+            margin-top: 10px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card shadow">
+                    <div class="card-header bg-primary text-white">
+                        <h2 class="mb-0">Add Video to Course</h2>
+                    </div>
+                    <div class="card-body">
+                        <!-- Flash Messages -->
+                        <% if (typeof messages !== 'undefined' && messages['video-error']) { %>
+                            <div class="alert alert-danger mb-4">
+                                <%= messages['video-error'] %>
+                            </div>
+                        <% } %>
+                        
+                        <% if (typeof messages !== 'undefined' && messages.success) { %>
+                            <div class="alert alert-success mb-4">
+                                <%= messages.success %>
+                            </div>
+                        <% } %>
+                        
+                        <!-- Back Button -->
+                        <div class="mb-4">
+                            <a href="/courses/<%= courseId %>" class="btn btn-outline-secondary">
+                                <i class="bi bi-arrow-left"></i> Back to Course
+                            </a>
+                        </div>
+                        
+                        <!-- Video Upload Form -->
+                        <form action="/api/courses/<%= courseId %>/add-videos" method="POST" enctype="multipart/form-data">
+                            <div class="mb-3">
+                                <label for="name" class="form-label">Instructor Name</label>
+                                <input type="text" class="form-control" id="name" name="name" required>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <label for="title" class="form-label">Video Title</label>
+                                <input type="text" class="form-control" id="title" name="title" required>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <label for="description" class="form-label">Description</label>
+                                <textarea class="form-control" id="description" name="description" rows="4" required></textarea>
+                            </div>
+                            
+                            <div class="mb-4">
+                                <label for="videoFile" class="form-label">Video File</label>
+                                <input type="file" class="form-control" id="videoFile" name="videoFile" accept="video/*" required>
+                                <div class="form-text">Upload a video file (MP4, WebM, etc.). Max size: 100MB</div>
+                                
+                                <!-- Video Preview -->
+                                <video id="videoPreview" class="file-preview mt-3" controls>
+                                    Your browser does not support the video tag.
+                                </video>
+                                
+                                <!-- Upload Progress Bar (visible during upload) -->
+                                <div class="progress mt-3" style="display: none;" id="uploadProgress">
+                                    <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width: 0%">0%</div>
+                                </div>
+                            </div>
+                            
+                            <div class="d-grid gap-2">
+                                <button type="submit" class="btn btn-primary btn-lg" id="submitBtn">
+                                    Upload Video
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                
+                <div class="mt-4 text-center text-muted">
+                    <p><small>Videos will be uploaded to Cloudinary and may take a few moments to process.</small></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const videoInput = document.getElementById('videoFile');
+            const videoPreview = document.getElementById('videoPreview');
+            const progressBar = document.getElementById('uploadProgress');
+            const submitBtn = document.getElementById('submitBtn');
+            const form = document.querySelector('form');
+            
+            // Show video preview when file is selected
+            videoInput.addEventListener('change', function() {
+                if (this.files && this.files[0]) {
+                    const file = this.files[0];
+                    
+                    // Check file size (100MB max)
+                    const maxSize = 100 * 1024 * 1024; // 100MB in bytes
+                    if (file.size > maxSize) {
+                        alert('Video file is too large. Please select a file smaller than 100MB.');
+                        this.value = '';
+                        videoPreview.style.display = 'none';
+                        return;
+                    }
+                    
+                    // Create and set the video preview
+                    const objectUrl = URL.createObjectURL(file);
+                    videoPreview.src = objectUrl;
+                    videoPreview.style.display = 'block';
+                    
+                    // Clean up the object URL when the page is unloaded
+                    window.addEventListener('unload', function() {
+                        URL.revokeObjectURL(objectUrl);
+                    });
+                }
+            });
+            
+            // Handle form submission
+            form.addEventListener('submit', function(e) {                
+                // Show progress bar during upload
+                progressBar.style.display = 'flex';
+                submitBtn.disabled = true;
+                submitBtn.innerHTML = '<span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span> Uploading...';
+                
+                // Allow form to submit normally
+                // The server-side flash messages will handle the response feedback
+            });
+        });
+    </script>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
