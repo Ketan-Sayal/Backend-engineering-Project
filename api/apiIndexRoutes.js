@@ -1,11 +1,12 @@
 const express = require('express');
 const router = express.Router();
-const {getUserData} = require('../middlewares/getUser');
+const {getUserData, isOwner} = require('../middlewares/getUser');
 const path = require('path'); 
 const Course = require('../models/course.model');
 const Career = require('../models/career.model');
 const User = require('../models/user.model');
 const { getVideosByCourse } = require('../controllers/video.controller');
+const Owner = require('../models/owner.model');
 
 router.get('/', (req, res)=>{
     res.status(200).render('welcome.ejs');
@@ -65,7 +66,7 @@ router.get('/community', getUserData, (req, res)=>{
     res.status(200).render('community.ejs', {name:username});
 });
 
-router.get("/create-course", getUserData, (req, res)=>{
+router.get("/create-course", getUserData, isOwner,(req, res)=>{
     const error = req.flash("course-error");
     res.status(200).render("createCourse.ejs", {error});
 })
@@ -96,7 +97,11 @@ router.get('/courses', getUserData, async(req, res)=>{
         }
     }]);
 
-    res.status(200).render('courses.ejs', {name:username, courses:courses|| [], user});
+    const owners = await Owner.find();
+    const owner = owners[0];
+    const isOwner = owner.username === username;
+
+    res.status(200).render('courses.ejs', {name:username, courses:courses|| [], user, isOwner});
 })
 
 router.get('/rankings', getUserData, (req, res)=>{

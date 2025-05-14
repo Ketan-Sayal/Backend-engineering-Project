@@ -413,6 +413,9 @@
             <div class="nav-buttons">
                 <button onclick="navigateTo('/feestructure')" class="btn-fee" style="cursor: pointer;">Fee Structure</button>
                 <button onclick="navigateTo('/logout')" class="btn-fee" style="cursor: pointer;"><%=name%></button>
+                <%if(isOwner){%>
+                    <button onclick="navigateTo('/create-course')" class="btn-fee" style="cursor: pointer;">Create Course</button>
+                <% } %>
             </div>
         </nav>
     </navbar>
