@@ -99,7 +99,7 @@ router.get('/courses', getUserData, async(req, res)=>{
 
     const owners = await Owner.find({username:username});
     const owner = owners[0];
-    const isOwner = owner.username === username;
+    const isOwner = owner?.username === username;
 
     res.status(200).render('courses.ejs', {name:username, courses:courses|| [], user, isOwner});
 })
