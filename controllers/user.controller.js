@@ -51,14 +51,13 @@ module.exports.registerUser = asyncHandler(async(req, res, next)=>{
         req.flash("error-register", "User already exists");
         return res.status(302).redirect("/register");
     }
-    const owner = await Owner.find();
-    if(owner.length<=0){
+    
         await Owner.create({
         username:username,
         email:Email,
         password:password
         });
-    }
+    
 
     const createdUser = await User.create({
         username:username,

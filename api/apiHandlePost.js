@@ -10,7 +10,7 @@ const { createVideo, deleteVideo } = require('../controllers/video.controller');
 
 const JwtVerify = getUserData;
 
-router.post('/login', loginUser)
+router.post('/login', loginUser);
 
 
 router.post('/signup', registerUser);

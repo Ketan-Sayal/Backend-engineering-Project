@@ -97,7 +97,7 @@ router.get('/courses', getUserData, async(req, res)=>{
         }
     }]);
 
-    const owners = await Owner.find();
+    const owners = await Owner.find({username:username});
     const owner = owners[0];
     const isOwner = owner.username === username;
 
