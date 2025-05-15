@@ -124,6 +124,11 @@ router.get('/register', (req, res)=>{
     res.status(200).render('signUp.ejs', {error:error});
 });
 
+router.get('/register/university', (req, res)=>{
+    const error = req.flash("error-register")
+    res.status(200).render('signUpUni.ejs', {error:error});
+});
+
 router.get("/courses/:courseId/update", getUserData,async (req, res)=>{
     req.flash("course-error", "");
     const {courseId} = req.params;

@@ -51,6 +51,32 @@ module.exports.registerUser = asyncHandler(async(req, res, next)=>{
         req.flash("error-register", "User already exists");
         return res.status(302).redirect("/register");
     }
+
+    const createdUser = await User.create({
+        username:username,
+        email:Email,
+        password:password
+    });
+    const token = createdUser.generateAccessToken();
+    return res.status(302).cookie("userData", token).redirect("/home");
+
+});
+
+module.exports.registerUniversity = asyncHandler(async(req, res, next)=>{
+    // Check that any feild is empty or not?
+    // register only user that has unique name or email otherwise send them to login page
+    // create the user and login it
+    const {username, password, Email} = req.body;
+    if([username, password, Email].some(val=>val==="")){
+        req.flash("error-register", "All feilds are required");
+        return res.status(302).redirect("/register");
+    }
+
+    const user = await  User.findOne({$or:[{username:username}, {email:Email}]});
+    if(user){
+        req.flash("error-register", "User already exists");
+        return res.status(302).redirect("/register");
+    }
     
         await Owner.create({
         username:username,

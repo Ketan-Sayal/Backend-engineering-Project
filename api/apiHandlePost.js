@@ -2,7 +2,7 @@ const express  = require('express');
 const router = express.Router();
 const fs = require('fs');
 const path = require('path');
-const { registerUser, loginUser } = require('../controllers/user.controller');
+const { registerUser, loginUser, registerUniversity } = require('../controllers/user.controller');
 const {createCourse, updateCourse, deleteCourse, enrollCourse} = require("../controllers/course.controller");
 const { getUserData } = require('../middlewares/getUser');
 const { upload } = require('../middlewares/multer');
@@ -13,7 +13,8 @@ const JwtVerify = getUserData;
 router.post('/login', loginUser);
 
 
-router.post('/signup', registerUser);
+router.post('/signup/user', registerUser);
+router.post('/signup/university', registerUniversity);
 
 router.post('/courses', JwtVerify, upload.single('image'), createCourse);
 router.post('/courses/:courseId/update', JwtVerify, upload.single('image'), updateCourse);
